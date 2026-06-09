@@ -1,4 +1,4 @@
 package filas;
 
-public class FilaAtencao {
+public class FilaAtencao extends FilaPaciente {
 }

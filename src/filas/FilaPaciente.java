@@ -1,38 +1,54 @@
 package filas;
 
-public class FilaPaciente {
-    private class No{
-        int dado;
-        No prox;
-    }
-    private No ini, fim;
+import paciente.Paciente;
 
-    public void init(){
+public class FilaPaciente {
+
+    private class NO {
+        Paciente dado;
+        NO prox;
+    }
+
+    private NO ini, fim;
+    private int quantidade;
+
+    public void init() {
         ini = fim = null;
+        quantidade = 0;
     }
-    public boolean isEmpty(){
-        return (ini==null && fim==null);
+
+    public boolean isEmpty() {
+        return (ini == null && fim == null);
     }
-    public void enqueue(int elem){
-        No novo = new No();
-        novo.dado = elem;
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void enqueue(Paciente p) {
+        NO novo = new NO();
+        novo.dado = p;
         novo.prox = null;
-        if(isEmpty()){
+        if (isEmpty()) {
             ini = novo;
-        } else{
+        } else {
             fim.prox = novo;
         }
         fim = novo;
+        quantidade++;
     }
-    public int dequeue(){
-        int valor = ini.dado;
+
+    public Paciente dequeue() {
+        Paciente p = ini.dado;
         ini = ini.prox;
-        if (ini == null){
+        if (ini == null) {
             fim = null;
         }
-        return valor;
+        quantidade--;
+        return p;
     }
-    public int first(){
+
+    public Paciente first() {
         return ini.dado;
     }
 }
